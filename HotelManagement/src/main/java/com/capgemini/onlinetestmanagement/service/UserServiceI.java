@@ -13,7 +13,7 @@ public interface UserServiceI {
 		 UserEntity findByLogin(String login);
 		
 		
-		 List<UserEntity> search(UserEntity user);
+		 List<UserEntity> search();
 		 boolean changePassword(long id,String oldPassword, String newPassword);
 		 boolean forgetPassword(String login);
 		 long registerUser(UserEntity user);

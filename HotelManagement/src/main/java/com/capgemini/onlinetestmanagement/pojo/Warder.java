@@ -14,10 +14,12 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="awarden")
 @Data
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Warder {
@@ -45,5 +47,79 @@ public class Warder {
 		return "Warder [id=" + wardenId + ", userId=" + name + ", login=" + login + ", hostelId="
 				+ hostelId +"]";
 	}
+
+	public long getWardenId() {
+		return wardenId;
+	}
+
+	public void setWardenId(long wardenId) {
+		this.wardenId = wardenId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public long getHostelId() {
+		return hostelId;
+	}
+
+	public void setHostelId(long hostelId) {
+		this.hostelId = hostelId;
+	}
+
+	public UserEntity getUser() {
+		return user;
+	}
+
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
+
+	public List<Hostel> getHostels() {
+		return hostels;
+	}
+
+	public void setHostels(List<Hostel> hostels) {
+		this.hostels = hostels;
+	}
+
+	/**
+	 * @param wardenId
+	 * @param name
+	 * @param login
+	 * @param hostelId
+	 * @param user
+	 * @param hostels
+	 */
+	public Warder(long wardenId, String name, String login, long hostelId, UserEntity user, List<Hostel> hostels) {
+		super();
+		this.wardenId = wardenId;
+		this.name = name;
+		this.login = login;
+		this.hostelId = hostelId;
+		this.user = user;
+		this.hostels = hostels;
+	}
+
+	/**
+	 * 
+	 */
+	public Warder() {
+		super();
+	}
+	
 	
 }

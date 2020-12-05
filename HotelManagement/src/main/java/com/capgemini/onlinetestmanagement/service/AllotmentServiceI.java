@@ -10,12 +10,12 @@ public interface AllotmentServiceI {
 	 long add(Allotment allotment);
 	 void update(Allotment allotment);
 	 void delete(Allotment allotment);
-	 Allotment findByName(String name);
-	 Allotment findByPk (long id);
-	 
-	 List<Allotment> search(Allotment allotment);
+	 List<Allotment> search();
 	
 	 
+	 
+	 Allotment findByName(String name);
+	 Allotment findByPk (long id);
 	 
 	 //Pagination
 	 List<Allotment> search(Allotment allotment, long pageNo, int pageSize);

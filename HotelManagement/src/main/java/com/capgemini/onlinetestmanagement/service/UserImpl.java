@@ -1,6 +1,7 @@
 package com.capgemini.onlinetestmanagement.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,40 +17,71 @@ public class UserImpl implements UserServiceI{
 
 	@Override
 	public long addUser(UserEntity user) {
+		long userId= user.getId();
 		userl.save(user);
-		return 0;
+		return userId;
 	}
 
 	@Override
 	public void updateUser(UserEntity user) {
-		
+		if(userl.existsById(user.getId()) == true)
+		{
+			userl.saveAndFlush(user);
+		}
 		
 	}
 
 	@Override
 	public void deleteUser(UserEntity user) {
-		
-		
+		long userId= user.getId();
+		Optional<UserEntity> obj = userl.findById(userId);
+		if(obj.isPresent())
+		{
+			UserEntity userObj = obj.get();
+			userl.delete(userObj);
+		}
 	}
 
+
+	@Override
+	public List<UserEntity> search() {
+		List<UserEntity> userobj = userl.findAll();
+		if(userobj.isEmpty() == false)
+			return userobj;
+		else
+		return null;
+	}
+
+	
+	@Override
+	public boolean changePassword(long id, String oldPassword, String newPassword) {
+		Optional<UserEntity> obj = userl.findById(id);
+		if(obj.isPresent())
+		{
+			UserEntity userObj = obj.get();
+			if(userObj.getPassword().contentEquals(oldPassword))
+			{
+				userObj.setPassword(newPassword);
+				userObj.setConfirmPassword(newPassword);
+				return true;
+			}
+			else {
+				//OldPassword MisMatch Exception
+				System.out.println(" Try to enter the Crt Old Password");
+				return false;
+			}
+		}
+		return false;
+	}
+
+	// Can Be implemented by NamedQuery.
 	@Override
 	public UserEntity findByLogin(String login) {
 		
 		return null;
 	}
-
-	@Override
-	public List<UserEntity> search(UserEntity user) {
-		
-		return null;
-	}
-
-	@Override
-	public boolean changePassword(long id, String oldPassword, String newPassword) {
-		
-		return false;
-	}
-
+	
+	// Can Be implemented by NamedQuery.
 	@Override
 	public boolean forgetPassword(String login) {
 		

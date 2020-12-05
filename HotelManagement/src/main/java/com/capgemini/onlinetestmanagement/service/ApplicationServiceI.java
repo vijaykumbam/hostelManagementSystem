@@ -10,13 +10,11 @@ public interface ApplicationServiceI {
 	 long add(Application application);
 	 void update(Application application);
 	 void delete(Application application);
-	 Application findByName(String name);
-	 Application findByPk (long id);
-	 
-	 List<Application> search(Application application);
+	 List<Application> search();
 	
 	 
-	 
+	 Application findByName(String name);
+	 Application findByPk (long id);
 	 //Pagination
 	 List<Application> search(Application application, long pageNo, int pageSize);
 }
