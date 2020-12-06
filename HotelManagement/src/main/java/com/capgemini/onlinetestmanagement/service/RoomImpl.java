@@ -43,7 +43,7 @@ public class RoomImpl implements RoomServiceI{
 	}
 
 	@Override
-	public List<Room> search(Room room) {
+	public List<Room> search() {
 		List<Room> obj = roomDao.findAll();
 		if(obj.isEmpty()!= true)
 		{

@@ -41,7 +41,7 @@ public class FeeImpl implements FeeServiceI{
 	}
 
 	@Override
-	public List<Fee> search(Fee fee) {
+	public List<Fee> search() {
 		List<Fee> obj = feeDao.findAll();
 		if(obj.isEmpty()!= true)
 		{

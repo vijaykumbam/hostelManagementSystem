@@ -1,5 +1,7 @@
 package com.capgemini.onlinetestmanagement.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +25,7 @@ import com.capgemini.onlinetestmanagement.service.WardenServiceI;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/hm")
 public class RestControllerHostel {
 	
 	@Autowired
@@ -42,7 +44,7 @@ public class RestControllerHostel {
 	private UserServiceI userService;
 	
 	
-	// Adding Section.....
+	//Adding Section.....
 	@GetMapping("/addWarden")
 	public long addWarden(@RequestBody Warder warden) {
 		return service.addWarder(warden);
@@ -77,5 +79,34 @@ public class RestControllerHostel {
 	//Delete Section......
 	
 	
-
+	//Get all the List......
+	@GetMapping("/getAllWardens")
+	public List<Warder> getAllWardens(){
+		return service.search();
+	}
+	@GetMapping("/getAllUsers")
+	public List<UserEntity> getAllUsers(){
+		return userService.search();
+	}
+	@GetMapping("/getAllRooms")
+	public List<Room> getAllRooms(){
+		return roomService.search();
+	}
+	@GetMapping("/getAllHostels")
+	public List<Hostel> getAllHostels(){
+		return hostelService.search();
+	}
+	@GetMapping("/getAllFees")
+	public List<Fee> getAllFees(){
+		return feeService.search();
+	}
+	@GetMapping("/getAllAplications")
+	public List<Application> getAllAplications(){
+		return applicationService.search();
+	}
+	@GetMapping("/getAllAllotments")
+	public List<Allotment> getAllAllotments(){
+		return allotmentService.search();
+	}
+	
 }

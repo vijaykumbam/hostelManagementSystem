@@ -13,7 +13,7 @@ public interface RoomServiceI {
 	 Room findByName(String name);
 	 Room findByPk (long id);
 	 
-	 List<Room> search(Room room);
+	 List<Room> search();
 	
 	 
 	 

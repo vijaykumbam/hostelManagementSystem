@@ -23,8 +23,6 @@ public class Application {
 	private Long applicationId;
 	@Column(name="name")
 	private String name;
-	@Column(name="hostelid")
-	private Long hostelId;
 	@Column(name="hostelName")
 	private String hostelName;
 	@Column(name="qualification")
@@ -39,6 +37,7 @@ public class Application {
 	private UserEntity user;
 	
 	@ManyToOne
+	@JoinColumn(name="hostelid")
 	private Hostel hostel;
 
 	public Long getApplicationId() {
@@ -55,14 +54,6 @@ public class Application {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Long getHostelId() {
-		return hostelId;
-	}
-
-	public void setHostelId(Long hostelId) {
-		this.hostelId = hostelId;
 	}
 
 	public String getHostelName() {
@@ -124,12 +115,11 @@ public class Application {
 	 * @param user
 	 * @param hostel
 	 */
-	public Application(Long applicationId, String name, Long hostelId, String hostelName, String qualification,
+	public Application(Long applicationId, String name, String hostelName, String qualification,
 			String address, String description, UserEntity user, Hostel hostel) {
 		super();
 		this.applicationId = applicationId;
 		this.name = name;
-		this.hostelId = hostelId;
 		this.hostelName = hostelName;
 		this.qualification = qualification;
 		this.address = address;
@@ -147,8 +137,8 @@ public class Application {
 
 	@Override
 	public String toString() {
-		return "Application [applicationId=" + applicationId + ", name=" + name + ", hostelId=" + hostelId
-				+ ", hostelName=" + hostelName + ", qualification=" + qualification + ", address=" + address
+		return "Application [applicationId=" + applicationId + ", name=" + name + ", hostelId="
+	+ hostelName + ", qualification=" + qualification + ", address=" + address
 				+ ", description=" + description + ", user=" + user + ", hostel=" + hostel + "]";
 	}
 	

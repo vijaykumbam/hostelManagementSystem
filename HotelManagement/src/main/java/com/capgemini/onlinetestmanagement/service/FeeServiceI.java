@@ -13,7 +13,7 @@ public interface FeeServiceI {
 	 Fee findByName(String name);
 	 Fee findByPk (long id);
 	 
-	 List<Fee> search(Fee fee);
+	 List<Fee> search();
 	
 	 
 	 
