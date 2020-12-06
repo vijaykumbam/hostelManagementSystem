@@ -13,7 +13,7 @@ public interface HostelServiceI {
 	 Hostel findByName(String name);
 	 Hostel findByPk (long id);
 	 
-	 List<Hostel> search(Hostel hostel);
+	 List<Hostel> search();
 	
 	 
 	 

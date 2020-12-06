@@ -36,13 +36,19 @@ public class ApplicationImpl implements ApplicationServiceI{
 		Optional<Application> obj = applicationDao.findById(application.getApplicationId());
 		if(obj.isPresent())
 		{
-			
+			Application applicationObj = obj.get();
+			applicationDao.delete(applicationObj);
 		}
 	}
 
 	@Override
 	public List<Application> search() {
-		// TODO Auto-generated method stub
+		List<Application> obj = applicationDao.findAll();
+		if(obj.isEmpty()!= true)
+		{
+			return obj;
+		}
+		else
 		return null;
 	}
 

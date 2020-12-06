@@ -1,32 +1,62 @@
 package com.capgemini.onlinetestmanagement.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capgemini.onlinetestmanagement.dao.RoomI;
 import com.capgemini.onlinetestmanagement.pojo.Room;
 
 @Service
 public class RoomImpl implements RoomServiceI{
 
+	@Autowired
+	private RoomI roomDao;
+	
+	
+	
 	@Override
 	public long addRoom(Room room) {
-		// TODO Auto-generated method stub
-		return 0;
+		long roomId = room.getHostelId();
+		roomDao.save(room);
+		return roomId;
 	}
 
 	@Override
 	public void updateRoom(Room room) {
-		// TODO Auto-generated method stub
-		
+		if(roomDao.existsById(room.getHostelId()) == true)
+		{
+			roomDao.saveAndFlush(room);
+		}
 	}
 
 	@Override
 	public void deleteRoom(Room room) {
-		// TODO Auto-generated method stub
-		
+		Optional<Room> obj = roomDao.findById(room.getHostelId());
+		if(obj.isPresent())
+		{
+			Room roomObj = obj.get();
+			roomDao.delete(roomObj);
+		}
 	}
 
+	@Override
+	public List<Room> search(Room room) {
+		List<Room> obj = roomDao.findAll();
+		if(obj.isEmpty()!= true)
+		{
+			return obj;
+		}
+		else
+		return null;
+	}
+	
+	
+	
+	
+	
 	@Override
 	public Room findByName(String name) {
 		// TODO Auto-generated method stub
@@ -35,12 +65,6 @@ public class RoomImpl implements RoomServiceI{
 
 	@Override
 	public Room findByPk(long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Room> search(Room room) {
 		// TODO Auto-generated method stub
 		return null;
 	}

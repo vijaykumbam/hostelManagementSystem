@@ -13,7 +13,7 @@ public interface WardenServiceI {
 	 Warder findByName(String name);
 	 Warder findByPk (long id);
 	 
-	 List<Warder> search(Warder warder);
+	 List<Warder> search();
 	
 	 
 	 
